@@ -40,6 +40,9 @@ done
 
 cd "${EB_DIR}"
 
+#apply patch
+curl -o /app/elkarbackup/src/Binovo/ElkarbackupBundle/Command/RunJobCommand.php -fSL "https://github.com/xezpeleta/elkarbackup/raw/fix331-dbRenewConn/src/Binovo/ElkarBackupBundle/Command/RunJobCommand.php"
+
 # Create/update database
 php app/console doctrine:database:create
 php app/console doctrine:migrations:migrate --no-interaction
