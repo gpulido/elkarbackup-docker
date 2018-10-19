@@ -33,7 +33,8 @@ RUN set -ex; \
       cd /app && mv elkarbackup-${ELKARBACKUP_VERSION} elkarbackup; \
       cd /app/elkarbackup; \
       mkdir -p app/cache app/sessions app/logs; \
-      rm app/DoctrineMigrations/Version20130306101349.php;
+      rm app/DoctrineMigrations/Version20130306101349.php; \
+	  curl -o /app/elkarbackup/src/Binovo/ElkarbackupBundle/Command/RunJobCommand.php -fSL "https://github.com/xezpeleta/elkarbackup/raw/fix331-dbRenewConn/src/Binovo/ElkarBackupBundle/Command/RunJobCommand.php"
       
 ## Download jquery
 ENV JQUERY_VERSION 1.12.0
