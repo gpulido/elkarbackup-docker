@@ -38,10 +38,13 @@ until mysqladmin ping -h "${SYMFONY__DATABASE__HOST}" --silent; do
   sleep 1
 done
 
-cd "${EB_DIR}"
+cd "${EB_DIR}/src/Binovo/ElkarbackupBundle/Command"
 
 #apply patch
-curl -o /app/elkarbackup/src/Binovo/ElkarbackupBundle/Command/RunJobCommand.php -fSL "https://github.com/xezpeleta/elkarbackup/raw/fix331-dbRenewConn/src/Binovo/ElkarBackupBundle/Command/RunJobCommand.php"
+rm RunJobCommand.php
+curl -o RunJobCommand.php -fSL "https://github.com/xezpeleta/elkarbackup/raw/fix331-dbRenewConn/src/Binovo/ElkarBackupBundle/Command/RunJobCommand.php"
+
+cd "${EB_DIR}"
 
 # Create/update database
 php app/console doctrine:database:create
